@@ -1,0 +1,77 @@
+{
+  "name": "exprestful",
+  "version": "1.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node ./server.js",
+    "serve": "nodemon ./server.js",
+    "clean-install": "rm -rf node_modules package-lock.json && npm install --save",
+    "migrate": "./scripts/migrations/migrate.sh",
+    "migrate:rollback": "./scripts/migrations/rollback.sh",
+    "migrate:refresh": "./scripts/migrations/refresh.sh",
+    "db:seed": "./scripts/migrations/seed.sh",
+    "tests": "NODE_ENV=test nyc --reporter=html --reporter=text ava --verbose",
+    "tests-report": "open coverage/index.html",
+    "lint": "eslint --fix src/**"
+  },
+  "dependencies": {
+    "@google-cloud/compute": "^2.4.0",
+    "@hapi/joi": "^15.1.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "~1.18.2",
+    "cors": "^2.8.4",
+    "debug": "~2.6.9",
+    "dotenv": "^5.0.1",
+    "express": "^4.16.4",
+    "express-rate-limit": "^2.11.0",
+    "helmet": "^3.15.1",
+    "ioredis": "^4.6.2",
+    "jsonwebtoken": "^8.2.0",
+    "lodash": "^4.17.11",
+    "mime": ">=1.4.1",
+    "moment": "^2.21.0",
+    "mongoose": "^5.4.19",
+    "mongoose-uuid2": "^2.3.0",
+    "morgan": "~1.9.0",
+    "mysql2": "^1.6.5",
+    "randomstring": "^1.1.5",
+    "sequelize": ">=5.3.0",
+    "sequelize-cli": "^5.5.0",
+    "uuid": "^3.2.1"
+  },
+  "devDependencies": {
+    "ava": "^3.13.0",
+    "eslint": "^4.18.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-airbnb-base": "^13.0.0",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0",
+    "nodemon": "^1.18.10",
+    "nyc": "^14.1.1",
+    "supertest": "^3.0.0"
+  },
+  "nyc": {
+    "per-file": true,
+    "lines": 95,
+    "statements": 95,
+    "functions": 95,
+    "branches": 95,
+    "reporter": [
+      "lcov"
+    ],
+    "exclude": [
+      "app/repositories/*.js",
+      "tests/**"
+    ]
+  },
+  "ava": {
+    "files": [
+      "tests/**/*.test.js"
+    ],
+    "failFast": false,
+    "failWithoutAssertions": false,
+    "tap": false,
+    "powerAssert": true
+  }
+}
