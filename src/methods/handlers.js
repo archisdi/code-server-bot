@@ -1,13 +1,6 @@
 'use strict';
 
-const gcloud = require('../singletons/gcloud');
-
-exports.telegramHandler = async (data, context) => {
-    return {
-        message: 'event dispatched',
-        data: ""
-    };
-};
+const gcloud = require('../modules/gcloud');
 
 exports.startVm = async (data, context) => {
     const vmName = "vscode";

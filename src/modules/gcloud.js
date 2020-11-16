@@ -6,6 +6,7 @@ let instance;
 exports.initialize = () => {
     const compute = new Compute();
     const zone = compute.zone('asia-southeast2-a');
+    
     instance = zone;
 
     return zone;
