@@ -3,7 +3,7 @@
   "version": "1.0.1",
   "private": true,
   "scripts": {
-    "start": "node ./server.js",
+    "start": "GOOGLE_APPLICATION_CREDENTIALS=./service-account.json node server.js",
     "serve": "nodemon ./server.js",
     "clean-install": "rm -rf node_modules package-lock.json && npm install --save",
     "migrate": "./scripts/migrations/migrate.sh",
@@ -37,6 +37,7 @@
     "randomstring": "^1.1.5",
     "sequelize": ">=5.3.0",
     "sequelize-cli": "^5.5.0",
+    "tymon": "git+https://github.com/archisdi/tymon.git",
     "uuid": "^3.2.1"
   },
   "devDependencies": {

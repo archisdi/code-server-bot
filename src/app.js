@@ -23,7 +23,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 /** Global Middlewares */
-app.use(ApiGuard);
+// app.use(ApiGuard);
 app.use(RateLimiter());
 
 /** Register Handlers */

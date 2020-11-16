@@ -1,2 +1,2 @@
-# ExpRESTful
-REST server made with express with laravel like features.
+# code-server-bot
+Telegram bot to manage gcloud compute resources
