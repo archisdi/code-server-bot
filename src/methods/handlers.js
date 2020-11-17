@@ -1,5 +1,6 @@
 'use strict';
 
+const { default: axios } = require('axios');
 const { HttpError } = require('tymon');
 const gcloud = require('../modules/gcloud');
 
@@ -10,7 +11,7 @@ exports.startVm = async (data, context) => {
     await zone.vm(VM_NAME).start();
 
     return {
-        message: "server is starting"
+        message: "spinning server"
     }
 }
 
@@ -19,7 +20,7 @@ exports.stopVm = async (data, context) => {
     await zone.vm(VM_NAME).stop();
 
     return {
-        message: "server is stoping"
+        message: "terminating server"
     }
 }
 
@@ -34,7 +35,8 @@ exports.statusVm = async (data, context) => {
 
 
 exports.telegramHandler = async (data, context) => {
-    if (data.body.message.from.id !== +process.env.MASTER_ID) {
+    const sourceId = data.body.message.chat.id;
+    if (sourceId !== +process.env.MASTER_ID) {
         throw HttpError.UnauthorizedError("unidentified personel !")
     }
 
@@ -56,6 +58,11 @@ exports.telegramHandler = async (data, context) => {
             reply = "unknown command"
             break;
     }
+
+    await axios.post(`https://api.telegram.org/bot${process.env.TELEGRAM_KEY}/sendMessage`,
+        { chat_id: sourceId, text: reply }, 
+        {  headers: { 'Content-Type': 'application/json' } }
+    );
 
     return {
         message: reply
