@@ -24,4 +24,10 @@ exports.stopVm = async (data, context) => {
     }
 }
 
+exports.telegramHandler = async (data, context) => {
+    return {
+        data: data.body
+    };
+}
+
 module.exports = exports;
