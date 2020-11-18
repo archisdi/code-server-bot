@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: code-server-bot-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: code-server-bot-service
+  template:
+    metadata:
+      labels:
+        app: code-server-bot-service
+    spec:
+      containers:
+        - name: code-server-bot-service
+          image: asia.gcr.io/archisdi-285415/code-server-bot
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: code-server-bot-cluster-ip-service
+spec:
+  type: ClusterIP
+  selector:
+    app: code-server-bot-service
+  ports:
+    - port: 8040
+      targetPort: 8080
