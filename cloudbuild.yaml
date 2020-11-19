@@ -2,6 +2,9 @@ steps:
   - name: "gcr.io/cloud-builders/gsutil"
     args: ["cp", "gs://ares-bucket/environments/code-server-bot", "./.env"]
 
+  - name: "gcr.io/cloud-builders/gsutil"
+    args: ["cp", "gs://ares-bucket/environments/service-accounts/code-server-service-account.json", "./service-account.json"]
+
   - name: "gcr.io/cloud-builders/docker"
     args:
       ["build", "-t", "asia.gcr.io/archisdi-285415/code-server-bot:$SHORT_SHA", "."]
