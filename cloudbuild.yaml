@@ -1,6 +1,6 @@
 steps:
   - name: "gcr.io/cloud-builders/gsutil"
-    args: ["cp", "gs://miloo-bucket/environments/code-server-bot", "./.env"]
+    args: ["cp", "gs://ares-bucket/environments/code-server-bot", "./.env"]
 
   - name: "gcr.io/cloud-builders/docker"
     args:
